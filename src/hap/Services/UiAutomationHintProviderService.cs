@@ -4,6 +4,7 @@ using hap.NativeMethods;
 using hap.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Automation;
 
@@ -17,8 +18,13 @@ namespace hap.Services
         /// <returns>The hint session containing the available hints</returns>
         public HintSession EnumHints()
         {
+            var sw = new Stopwatch();
+            sw.Start();
             var desktopHandle = User32.GetForegroundWindow();
-            return EnumHints(desktopHandle);
+            var hints =  EnumHints(desktopHandle);
+            sw.Stop();
+            Console.WriteLine(sw.Elapsed);
+            return hints;
         }
 
         /// <summary>
