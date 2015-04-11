@@ -11,6 +11,7 @@ namespace hap.Models
     internal class UiAutomationHint : Hint
     {
         private readonly Lazy<InvokePattern> _invokePattern;
+        private readonly Lazy<string> _accessKey;
 
         public UiAutomationHint(IntPtr owningWindow, Rect windowBounds, AutomationElement automationElement)
             : base(owningWindow, GetBoundingRect(owningWindow, windowBounds, automationElement))
@@ -20,11 +21,16 @@ namespace hap.Models
             if (BoundingRectangle.IsEmpty) return;
 
             _invokePattern = new Lazy<InvokePattern>(() => TryGetInvokePattern(automationElement));
+            _accessKey =
+                new Lazy<string>(
+                    () =>
+                        automationElement.GetCurrentPropertyValue(AutomationElement.AccessKeyProperty, true) as string);
         }
 
         private static Rect GetBoundingRect(IntPtr owningWindow, Rect windowBounds, AutomationElement automationElement)
         {
-            var boundingRectObject = automationElement.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty, true);
+            var boundingRectObject =
+                automationElement.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty, true);
 
             if (boundingRectObject == AutomationElement.NotSupported)
             {
@@ -63,6 +69,11 @@ namespace hap.Models
         /// The underlying automation element
         /// </summary>
         public AutomationElement AutomationElement { get; private set; }
+
+        public override string AccessKey
+        {
+            get { return _accessKey.Value; }
+        }
 
         public override void Invoke()
         {

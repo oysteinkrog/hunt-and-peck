@@ -33,5 +33,7 @@ namespace hap.Models
         /// Invokes the hint
         /// </summary>
         public abstract void Invoke();
+
+        public abstract string AccessKey { get; }
     }
 }
