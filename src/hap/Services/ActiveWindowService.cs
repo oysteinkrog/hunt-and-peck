@@ -57,9 +57,9 @@ namespace hap.Services
         private void WinEventProc(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild,
             uint dwEventThread, uint dwmsEventTime)
         {
-            ActiveWindowChanged?.Invoke();
+            ActiveWindowChanged?.Invoke(hwnd);
         }
 
-        public event Action ActiveWindowChanged;
+        public event Action<IntPtr> ActiveWindowChanged;
     }
 }

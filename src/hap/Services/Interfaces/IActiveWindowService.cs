@@ -6,6 +6,6 @@ namespace hap.Services.Interfaces
 {
     public interface IActiveWindowService
     {
-        event Action ActiveWindowChanged;
+        event Action<IntPtr> ActiveWindowChanged;
     }
 }
