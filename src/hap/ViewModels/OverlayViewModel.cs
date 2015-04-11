@@ -27,7 +27,7 @@ namespace hap.ViewModels
                 var hint = session.Hints[i];
                 _hints.Add(new HintViewModel(hint)
                 {
-                    Label = labels[i],
+                    Label = labels[i] + hint.AccessKey,
                     Active = false
                 });
             }

@@ -66,7 +66,7 @@ namespace hap.Views
                     return;
                 }
 
-                var ourHandle = new WindowInteropHelper(this).Handle;
+                var ourHandle = new User32.HWND(new WindowInteropHelper(this).Handle);
 
                 // force us to the forground
                 User32.BringWindowToTop(ourHandle);

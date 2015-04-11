@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using hap.NativeMethods;
 
 namespace hap.Models
 {
@@ -13,7 +14,7 @@ namespace hap.Models
         /// </summary>
         /// <param name="owningWindow">The owning window</param>
         /// <param name="boundingRectangle">The bounding rectangle of the hint in owner window coordinates</param>
-        protected Hint(IntPtr owningWindow, Rect boundingRectangle)
+        protected Hint(User32.HWND owningWindow, Rect boundingRectangle)
         {
             OwningWindow = owningWindow;
             BoundingRectangle = boundingRectangle;
@@ -27,7 +28,7 @@ namespace hap.Models
         /// <summary>
         /// The window handle of the owning window
         /// </summary>
-        public IntPtr OwningWindow { get; private set; }
+        public User32.HWND OwningWindow { get; private set; }
 
         /// <summary>
         /// Invokes the hint

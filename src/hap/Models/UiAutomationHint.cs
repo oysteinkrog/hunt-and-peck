@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Automation;
 using hap.Extensions;
+using hap.NativeMethods;
 
 namespace hap.Models
 {
@@ -13,7 +14,7 @@ namespace hap.Models
         private readonly Lazy<InvokePattern> _invokePattern;
         private readonly Lazy<string> _accessKey;
 
-        public UiAutomationHint(IntPtr owningWindow, Rect windowBounds, AutomationElement automationElement)
+        public UiAutomationHint(User32.HWND owningWindow, Rect windowBounds, AutomationElement automationElement)
             : base(owningWindow, GetBoundingRect(owningWindow, windowBounds, automationElement))
         {
             AutomationElement = automationElement;
@@ -27,7 +28,7 @@ namespace hap.Models
                         automationElement.GetCurrentPropertyValue(AutomationElement.AccessKeyProperty, true) as string);
         }
 
-        private static Rect GetBoundingRect(IntPtr owningWindow, Rect windowBounds, AutomationElement automationElement)
+        private static Rect GetBoundingRect(User32.HWND owningWindow, Rect windowBounds, AutomationElement automationElement)
         {
             var boundingRectObject =
                 automationElement.GetCurrentPropertyValue(AutomationElement.BoundingRectangleProperty, true);

@@ -29,7 +29,7 @@ namespace hap.Services
         /// </summary>
         /// <param name="hWnd">The window handle of window to enumerate hints in</param>
         /// <returns>The hint session containing the available hints</returns>
-        public HintSession EnumHints(IntPtr hWnd)
+        public HintSession EnumHints(User32.HWND hWnd)
         {
             var sw = new Stopwatch();
             sw.Start();
@@ -64,9 +64,9 @@ namespace hap.Services
         /// </summary>
         /// <param name="hWnd">The window handle</param>
         /// <returns>All of the automation elements found</returns>
-        private AutomationElementCollection EnumElements(IntPtr hWnd)
+        private AutomationElementCollection EnumElements(User32.HWND hWnd)
         {
-            var automationElement = AutomationElement.FromHandle(hWnd);
+            var automationElement = AutomationElement.FromHandle(hWnd.DangerousGetHandle());
             var condition = new AndCondition(new PropertyCondition(AutomationElement.IsOffscreenProperty, false),
                                              new PropertyCondition(AutomationElement.IsEnabledProperty, true),
                                              // Filter out non-invoke patterns to speed this up as this can be slow for large windows

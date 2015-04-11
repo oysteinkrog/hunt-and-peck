@@ -12,7 +12,7 @@ namespace hap.Extensions
         /// <param name="source">The source rectangle</param>
         /// <param name="hWnd">The window handle to use for conversion</param>
         /// <returns>The rectangle in logical coordinates, else an empty rectangle</returns>
-        public static Rect PhysicalToLogicalRect(this Rect source, IntPtr hWnd)
+        public static Rect PhysicalToLogicalRect(this Rect source, User32.HWND hWnd)
         {
             POINT tl = source.TopLeft;
             POINT br = source.BottomRight;

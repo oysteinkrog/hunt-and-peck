@@ -1,5 +1,6 @@
 ﻿using System;
 using hap.Models;
+using hap.NativeMethods;
 
 namespace hap.Services.Interfaces
 {
@@ -19,6 +20,6 @@ namespace hap.Services.Interfaces
         /// </summary>
         /// <param name="hWnd">The window handle of window to enumerate hints in</param>
         /// <returns>The hint session containing the available hints</returns>
-        HintSession EnumHints(IntPtr hWnd);
+        HintSession EnumHints(User32.HWND hWnd);
     }
 }
