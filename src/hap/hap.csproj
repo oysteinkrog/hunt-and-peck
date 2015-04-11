@@ -111,7 +111,9 @@
     <Compile Include="Models\Hint.cs" />
     <Compile Include="Models\HintSession.cs" />
     <Compile Include="Models\UiAutomationHint.cs" />
+    <Compile Include="Services\ActiveWindowService.cs" />
     <Compile Include="Services\HintLabelService.cs" />
+    <Compile Include="Services\Interfaces\IActiveWindowService.cs" />
     <Compile Include="Services\Interfaces\IHintLabelService.cs" />
     <Compile Include="Services\Interfaces\IHintProviderService.cs" />
     <Compile Include="Services\Interfaces\IKeyListenerService.cs" />

@@ -97,6 +97,10 @@ namespace hap
             builder.RegisterType<UiAutomationHintProviderService>()
                    .As<IHintProviderService>()
                    .SingleInstance();
+
+            builder.RegisterType<ActiveWindowService>()
+                   .As<IActiveWindowService>()
+                   .SingleInstance();
         }
 
         /// <summary>
