@@ -31,18 +31,26 @@ namespace hap.Services
         /// <returns>The hint session containing the available hints</returns>
         public HintSession EnumHints(IntPtr hWnd)
         {
+            var sw = new Stopwatch();
+            sw.Start();
             var elements = EnumElements(hWnd);
+            sw.Stop();
+            Console.WriteLine(sw.Elapsed);
 
             // Window bounds
             var rawWindowBounds = new RECT();
             User32.GetWindowRect(hWnd, ref rawWindowBounds);
             Rect windowBounds = rawWindowBounds;
 
+            sw.Reset();
+            sw.Start();
             var result = new List<Hint>();
             foreach (AutomationElement element in elements)
             {
                 result.Add(new UiAutomationHint(hWnd, windowBounds, element));
             }
+            sw.Stop();
+            Console.WriteLine(sw.Elapsed);
             return new HintSession
             {
                 Hints = result.Where(hint => !hint.BoundingRectangle.IsEmpty).ToList(),
